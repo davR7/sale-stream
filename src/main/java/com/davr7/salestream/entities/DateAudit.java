@@ -1,7 +1,6 @@
 package com.davr7.salestream.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -19,8 +18,8 @@ public abstract class DateAudit implements Serializable{
 
 	@CreatedDate
     @Column(nullable = false, updatable = false)
-    private Date createdAt;
+    protected LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    protected LocalDateTime updatedAt;
 }
