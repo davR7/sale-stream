@@ -5,7 +5,6 @@ import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,7 +30,7 @@ public class Customer extends User {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<Order> orders = new HashSet<>(); 
 
 	public Customer(String id, String fullname, String username, String email, String phone, String password) {
