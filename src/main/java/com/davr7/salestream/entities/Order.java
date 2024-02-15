@@ -5,10 +5,13 @@ import java.time.Instant;
 
 import com.davr7.salestream.entities.enums.OrderStatus;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,11 +20,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="order")
+@Table(name = "orders")
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @EqualsAndHashCode(of="id")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +34,9 @@ public class Order implements Serializable {
 	private String id;
 	private Instant orderDate;
 	private Integer orderStatus;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
 	public Order(Instant orderDate, OrderStatus orderStatus, Customer customer) {
