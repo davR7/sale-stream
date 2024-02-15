@@ -3,6 +3,8 @@ package com.davr7.salestream.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class Customer extends User {
 	private String id;
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<>(); 
 
 	public Customer(String id, String fullname, String username, String email, String phone, String password) {
