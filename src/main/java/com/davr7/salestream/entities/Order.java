@@ -5,8 +5,8 @@ import java.time.Instant;
 
 import com.davr7.salestream.entities.enums.OrderStatus;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,11 +35,12 @@ public class Order implements Serializable {
 	private Instant orderDate;
 	private Integer orderStatus;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
-	public Order(Instant orderDate, OrderStatus orderStatus, Customer customer) {
+	public Order(String id, Instant orderDate, OrderStatus orderStatus, Customer customer) {
+		this.id = id;
 		this.orderDate = orderDate;
 		this.customer = customer;
 		setStatus(orderStatus);
