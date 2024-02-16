@@ -32,7 +32,7 @@ public class Product extends DateAudit {
 	private String id;
 	private String name;
 	private String description;
-	private String price;
+	private Double price;
 	private String imgUrl;
 	
 	@ManyToMany
@@ -40,4 +40,12 @@ public class Product extends DateAudit {
 		joinColumns = @JoinColumn(name="product_id"),
 		inverseJoinColumns = @JoinColumn(name="category_id"))
 	private Set<Category> categories = new HashSet<>();
+
+	public Product(String id, String name, String description, Double price, String imgUrl) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.imgUrl = imgUrl;
+	}
 }
