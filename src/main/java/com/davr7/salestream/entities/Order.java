@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -42,6 +43,7 @@ public class Order implements Serializable {
 	private Customer customer;
 	
 	@OneToMany(mappedBy = "id.order")
+	@Setter(value = AccessLevel.NONE)
 	private Set<OrderDetail> items = new HashSet<>();
 	
 	public Order(String id, Instant orderDate, OrderStatus orderStatus, Customer customer) {
@@ -59,9 +61,5 @@ public class Order implements Serializable {
 		if (orderStatus != null) {
 			this.orderStatus = orderStatus.getCod();
 		}
-	}
-	
-	public Set<OrderDetail> getOrderDetail() {
-		return items;
 	}
 }
