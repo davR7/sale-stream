@@ -11,10 +11,12 @@ import org.springframework.context.annotation.Profile;
 import com.davr7.salestream.entities.Category;
 import com.davr7.salestream.entities.Customer;
 import com.davr7.salestream.entities.Order;
+import com.davr7.salestream.entities.OrderDetail;
 import com.davr7.salestream.entities.Product;
 import com.davr7.salestream.entities.enums.OrderStatus;
 import com.davr7.salestream.repositories.CategoryRepository;
 import com.davr7.salestream.repositories.CustomerRepository;
+import com.davr7.salestream.repositories.OrderDetailRepository;
 import com.davr7.salestream.repositories.OrderRepository;
 import com.davr7.salestream.repositories.ProductRepository;
 
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	ProductRepository productRepo;
+	
+	@Autowired
+	OrderDetailRepository orderDetRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -67,6 +72,12 @@ public class TestConfig implements CommandLineRunner{
 		
 		customerRepo.saveAll(Arrays.asList(customer1, customer2));
 		orderRepo.saveAll(Arrays.asList(order1, order2, order3));
+		
+		OrderDetail od1 = new OrderDetail(order1, prod1, 2, prod1.getPrice());
+		OrderDetail od2 = new OrderDetail(order1, prod3, 1, prod3.getPrice());
+		OrderDetail od3 = new OrderDetail(order2, prod3, 2, prod3.getPrice());
+		OrderDetail od4 = new OrderDetail(order3, prod5, 2, prod5.getPrice());
+		
+		orderDetRepo.saveAll(Arrays.asList(od1, od2, od3, od4));
 	}
-
 }
