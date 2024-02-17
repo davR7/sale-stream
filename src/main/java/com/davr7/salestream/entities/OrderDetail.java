@@ -27,7 +27,7 @@ public class OrderDetail implements Serializable {
 	@Getter(value = AccessLevel.NONE)
 	@Setter(value = AccessLevel.NONE)
 	@EmbeddedId
-	private OrderDetailPK id;
+	private OrderDetailPK id = new OrderDetailPK();
 	
 	private Integer quantity;
 	private Double price;
