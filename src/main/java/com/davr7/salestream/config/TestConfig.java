@@ -56,6 +56,8 @@ public class TestConfig implements CommandLineRunner{
 		prod4.getCategories().add(ctg3);
 		prod5.getCategories().add(ctg2);
 		
+		productRepo.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
+		
 		Customer customer1 = new Customer(null, "Davi Melo", "dav12", "davi@test.com", "81977775555", "122345");
 		Customer customer2 = new Customer(null, "Maria Clara", "ma78", "maria@test.com", "81977774444", "122345");
 		
