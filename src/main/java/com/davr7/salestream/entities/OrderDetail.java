@@ -3,6 +3,7 @@ package com.davr7.salestream.entities;
 import java.io.Serializable;
 
 import com.davr7.salestream.entities.pk.OrderDetailPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -39,6 +40,7 @@ public class OrderDetail implements Serializable {
 		id.setProduct(product);
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
