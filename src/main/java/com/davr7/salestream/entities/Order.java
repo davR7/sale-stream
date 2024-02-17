@@ -2,6 +2,8 @@ package com.davr7.salestream.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.davr7.salestream.entities.enums.OrderStatus;
 
@@ -11,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -38,6 +41,9 @@ public class Order implements Serializable {
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderDetail> items = new HashSet<>();
+	
 	public Order(String id, Instant orderDate, OrderStatus orderStatus, Customer customer) {
 		this.id = id;
 		this.orderDate = orderDate;
@@ -53,5 +59,9 @@ public class Order implements Serializable {
 		if (orderStatus != null) {
 			this.orderStatus = orderStatus.getCod();
 		}
+	}
+	
+	public Set<OrderDetail> getOrderDetail() {
+		return items;
 	}
 }
