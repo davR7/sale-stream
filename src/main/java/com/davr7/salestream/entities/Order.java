@@ -62,4 +62,8 @@ public class Order implements Serializable {
 			this.orderStatus = orderStatus.getCod();
 		}
 	}
+	
+	public Set<OrderDetail> getItems() {
+		return items;
+	}
 }
