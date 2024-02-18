@@ -66,4 +66,10 @@ public class Order implements Serializable {
 	public Set<OrderDetail> getItems() {
 		return items;
 	}
+	
+	public Double getTotal() {
+		return items.stream()
+				.mapToDouble(val -> val.getSubTotal())
+				.reduce(0, (acc, val) -> acc + val);
+	}
 }
