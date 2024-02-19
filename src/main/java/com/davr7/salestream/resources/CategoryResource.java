@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,14 @@ public class CategoryResource {
 	@Autowired
 	CategoryService categoryServ;
 	
+	@GetMapping(value="/{id}")
+	public ResponseEntity<Category> handleFindCategoryById(@PathVariable String id) {
+		Category obj = categoryServ.findCategoryById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@GetMapping
-	public ResponseEntity<List<Category>> handlerFindAllCategories() {
+	public ResponseEntity<List<Category>> handleFindAllCategories() {
 		List<Category> list = categoryServ.findAllCategories();
 		return ResponseEntity.ok().body(list);
 	}
