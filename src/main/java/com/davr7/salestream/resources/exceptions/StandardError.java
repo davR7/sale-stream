@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class StandardError {
-	private Instant timestamp;
-	private String path;
-	private Integer status;
-	private String error;
+	protected Instant timestamp;
+	protected String path;
+	protected Integer status;
+	protected String error;
 }
