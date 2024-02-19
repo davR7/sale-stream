@@ -26,7 +26,7 @@ public class ProductResource {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Product>> handlerFindAllCategories() {
+	public ResponseEntity<List<Product>> handlerFindAllProducts() {
 		List<Product> list = productServ.findAllProducts();
 		return ResponseEntity.ok().body(list);
 	}
