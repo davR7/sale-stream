@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,14 @@ public class CustomerResource {
 	@Autowired
 	CustomerService customerServ;
 	
+	@GetMapping(value="/{id}")
+	public ResponseEntity<Customer> handleFindCustomerById(@PathVariable String id) {
+		Customer obj = customerServ.findCustomerById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@GetMapping
-	public ResponseEntity<List<Customer>> handlerFindAllCustomers() {
+	public ResponseEntity<List<Customer>> handleFindAllCustomers() {
 		List<Customer> list = customerServ.findAllCustomers();
 		return ResponseEntity.ok().body(list);
 	}
