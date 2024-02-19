@@ -12,6 +12,7 @@ import com.davr7.salestream.entities.Category;
 import com.davr7.salestream.entities.Customer;
 import com.davr7.salestream.entities.Order;
 import com.davr7.salestream.entities.OrderDetail;
+import com.davr7.salestream.entities.Payment;
 import com.davr7.salestream.entities.Product;
 import com.davr7.salestream.entities.enums.OrderStatus;
 import com.davr7.salestream.repositories.CategoryRepository;
@@ -63,14 +64,14 @@ public class TestConfig implements CommandLineRunner{
 		
 		productRepo.saveAll(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 		
-		Customer customer1 = new Customer(null, "Davi Melo", "dav12", "davi@test.com", "81977775555", "122345");
-		Customer customer2 = new Customer(null, "Maria Clara", "ma78", "maria@test.com", "81977774444", "122345");
+		Customer cust1 = new Customer(null, "Davi Melo", "dav12", "davi@test.com", "81977775555", "122345");
+		Customer cust2 = new Customer(null, "Maria Clara", "ma78", "maria@test.com", "81977774444", "122345");
 		
-		Order order1 = new Order(null, Instant.parse("2024-01-15T19:53:07Z"), OrderStatus.PAID, customer1);
-		Order order2 = new Order(null, Instant.parse("2024-01-15T19:55:07Z"), OrderStatus.WAITING_PAYMENT, customer1);
-		Order order3 = new Order(null, Instant.parse("2024-01-15T19:58:07Z"), OrderStatus.WAITING_PAYMENT, customer2);
+		Order order1 = new Order(null, Instant.parse("2024-01-15T19:53:07Z"), OrderStatus.PAID, cust1);
+		Order order2 = new Order(null, Instant.parse("2024-01-15T19:55:07Z"), OrderStatus.WAITING_PAYMENT, cust1);
+		Order order3 = new Order(null, Instant.parse("2024-01-15T19:58:07Z"), OrderStatus.WAITING_PAYMENT, cust2);
 		
-		customerRepo.saveAll(Arrays.asList(customer1, customer2));
+		customerRepo.saveAll(Arrays.asList(cust1, cust2));
 		orderRepo.saveAll(Arrays.asList(order1, order2, order3));
 		
 		OrderDetail od1 = new OrderDetail(order1, prod1, 2, prod1.getPrice());
@@ -79,5 +80,9 @@ public class TestConfig implements CommandLineRunner{
 		OrderDetail od4 = new OrderDetail(order3, prod5, 2, prod5.getPrice());
 		
 		orderDetRepo.saveAll(Arrays.asList(od1, od2, od3, od4));
+		
+		Payment pay1 = new Payment(null, Instant.parse("2024-01-15T19:56:07Z"), order1);
+		order1.setPayment(pay1);
+		orderRepo.save(order1);
 	}
 }
