@@ -3,6 +3,8 @@ package com.davr7.salestream.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,7 @@ public class Payment implements Serializable {
 	private String id;
 	private Instant paymentDate;
 	
+	@JsonIgnore
 	@OneToOne
 	@MapsId
 	private Order order;
