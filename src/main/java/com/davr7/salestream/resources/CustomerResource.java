@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.davr7.salestream.dtos.CustomerDTO;
 import com.davr7.salestream.entities.Customer;
 import com.davr7.salestream.services.CustomerService;
 
@@ -26,8 +27,8 @@ public class CustomerResource {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Customer>> handleFindAllCustomers() {
-		List<Customer> list = customerServ.findAllCustomers();
+	public ResponseEntity<List<CustomerDTO>> handleFindAllCustomers() {
+		List<CustomerDTO> list = customerServ.findAllCustomers();
 		return ResponseEntity.ok().body(list);
 	}
 }
