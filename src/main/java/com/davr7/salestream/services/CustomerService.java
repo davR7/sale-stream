@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.davr7.salestream.dtos.CustomerDTO;
 import com.davr7.salestream.entities.Customer;
+import com.davr7.salestream.entities.mappers.CustomerMapper;
 import com.davr7.salestream.repositories.CustomerRepository;
 import com.davr7.salestream.services.exceptions.ResourceNotFoundException;
 
@@ -20,14 +21,14 @@ public class CustomerService {
 	
 	public CustomerDTO findCustomerById(String id) {
 		Optional<Customer> data = customerRepo.findById(id);
-		return CustomerDTO.create(data.orElseThrow(
+		return CustomerMapper.INSTANCE.toCustomerDTO(data.orElseThrow(
 				() -> new ResourceNotFoundException(id)));
 	}
 	
 	public List<CustomerDTO> findAllCustomers() {
 		List<Customer> list = customerRepo.findAll();
 		List<CustomerDTO> listDTO = list.stream()
-				.map(c -> CustomerDTO.create(c))
+				.map(c -> CustomerMapper.INSTANCE.toCustomerDTO(c))
 				.collect(Collectors.toList());
 		return listDTO;
 	}
