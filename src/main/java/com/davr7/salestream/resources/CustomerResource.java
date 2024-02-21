@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.davr7.salestream.dtos.CustomerDTO;
-import com.davr7.salestream.entities.Customer;
 import com.davr7.salestream.services.CustomerService;
 
 @RestController
@@ -21,8 +20,8 @@ public class CustomerResource {
 	CustomerService customerServ;
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<Customer> handleFindCustomerById(@PathVariable String id) {
-		Customer obj = customerServ.findCustomerById(id);
+	public ResponseEntity<CustomerDTO> handleFindCustomerById(@PathVariable String id) {
+		CustomerDTO obj = customerServ.findCustomerById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
