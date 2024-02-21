@@ -18,9 +18,10 @@ public class CustomerService {
 	@Autowired
 	CustomerRepository customerRepo;
 	
-	public Customer findCustomerById(String id) {
+	public CustomerDTO findCustomerById(String id) {
 		Optional<Customer> data = customerRepo.findById(id);
-		return data.orElseThrow(() -> new ResourceNotFoundException(id));
+		return CustomerDTO.create(data.orElseThrow(
+				() -> new ResourceNotFoundException(id)));
 	}
 	
 	public List<CustomerDTO> findAllCustomers() {
