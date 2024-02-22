@@ -7,7 +7,7 @@ Este projeto é um sistema básico de vendas desenvolvido em Spring Boot. O obje
 boas práticas de design de software, especialmente no que diz respeito ao relacionamentos de entidades e 
 transferência de dados.
 
-## Diagrama de Classe do Sistema
+## Diagrama de Classe
 <div align="center">
   <a><img src="src/main/resources/static/images/class_diagram.png" width="1069" alt="SpringBoot" /></a>
 </div>
